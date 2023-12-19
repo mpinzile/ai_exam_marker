@@ -1,0 +1,79 @@
+<!-- templates/marking_system/my_modules.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Modules</title>
+    <style>
+      body {
+        overflow-x: hidden;
+      }
+
+      @media (max-width: 767px) {
+        .card-container {
+          margin-right: 12px; /* Adjust this value as needed */
+          margin-left: 12px; /* Adjust this value as needed */
+        }
+      }
+
+      .navbar {
+        background-color: #4f46e5; /* Indigo background color */
+        color: #ffffff; /* White text color */
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .navbar h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+    </style>
+    <!-- Include Tailwind CSS via CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- Include Font Awesome Icons via CDN -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <div class="navbar">
+      <h1 class="text-white">AI Exam Marking System</h1>
+    </div>
+    <div class="container mx-auto mt-10">
+      <header class="mb-8">
+        <h1
+          class="text-4xl font-extrabold text-indigo-700 leading-tight mx-4 mb-4"
+        >
+          My Modules
+        </h1>
+        <!-- Display student's course and level -->
+        <div class="mx-4 mb-4 border-b pb-2">
+          <p class="text-lg text-gray-800">
+            Admission Number: {{ student_info.0 }}
+          </p>
+          <p class="text-lg text-gray-800">Course: {{ student_info.1 }}</p>
+          <p class="text-lg text-gray-800">Level: {{ student_info.2 }}</p>
+        </div>
+      </header>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Loop through student's modules -->
+        {% for module in student_modules %}
+        <div class="bg-white p-6 rounded-md shadow-md card-container">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-lg font-bold text-indigo-700">{{ module.1 }}</h2>
+          </div>
+          <p class="text-gray-800">Teacher: {{ module.4 }}</p>
+          <!-- Add more information about the module if needed -->
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

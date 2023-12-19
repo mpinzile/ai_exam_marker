@@ -1,0 +1,78 @@
+<!-- templates/marking_system/set_exam.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Exam</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        overflow-x: hidden;
+      }
+
+      @media (max-width: 767px) {
+        .card-container {
+          margin-right: 12px; /* Adjust this value as needed */
+          margin-left: 12px; /* Adjust this value as needed */
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <div class="container mx-auto mt-10">
+      <header class="mb-8">
+        <h1
+          class="text-2xl md:text-4xl font-extrabold text-indigo-700 leading-tight mx-4"
+        >
+          You're setting an exam for module "{{ module_name }}"
+        </h1>
+      </header>
+
+      <div
+        class="max-w-md mx-auto p-6 bg-white rounded-md shadow-md card-container"
+      >
+        <!-- Module Name -->
+        <p class="text-lg font-bold text-indigo-700 mb-4">
+          Module: {{ module_name }}
+        </p>
+
+        <!-- Select Question Type -->
+        <div class="mb-4">
+          <label
+            for="questionType"
+            class="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Select Question Type:
+          </label>
+          <select
+            id="questionType"
+            name="questionType"
+            class="w-full px-3 py-2 border rounded-md"
+          >
+            <option value="open_ended">Open Ended</option>
+            <option value="multiple_choice">Multiple Choice</option>
+            <option value="true_false">True/False</option>
+          </select>
+        </div>
+      </div>
+      <!-- This div closes the one opened before the select element -->
+      <div
+        id="examSettingSection"
+        class="max-w-md mx-auto p-6 bg-white rounded-md shadow-md card-container mt-4"
+      ></div>
+      <div id="exam">
+        <!-- Add these hidden inputs within your form -->
+        <input type="hidden" name="teacher_id" value="{{ teacher_id }}" />
+        <input type="hidden" name="module_id" value="{{ module_id }}" />
+      </div>
+    </div>
+    {% load static %}
+    <script src="{% static '/marking_system/script.js' %}" defer></script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Available Exams</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        overflow-x: hidden;
+      }
+
+      @media (max-width: 767px) {
+        .card-container {
+          margin-right: 10px; /* Adjust this value as needed */
+          margin-left: 10px; /* Adjust this value as needed */
+        }
+      }
+
+      .navbar {
+        background-color: #4f46e5; /* Indigo background color */
+        color: #ffffff; /* White text color */
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .navbar h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .no-exams-card {
+        background-color: #dbeafe; /* Muted blue color */
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        min-width: 250px; /* Minimum width for the card on larger screens */
+        margin: auto; /* Center the card horizontally on larger screens */
+      }
+
+      .grid-cols-1 {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100 font-sans">
+    <div class="navbar">
+      <h1 class="text-white">AI Exam Marking System</h1>
+    </div>
+    <div class="container mx-auto mt-10">
+      <header class="mb-8">
+        <h1
+          class="text-4xl font-extrabold text-indigo-700 leading-tight text-center"
+        >
+          Available Exams
+        </h1>
+      </header>
+
+      <section class="max-w-3xl mx-auto">
+        {% if available_exams %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {% for exam in available_exams %}
+          <div class="bg-white p-6 rounded-md shadow-md card-container">
+            <h3 class="text-lg font-bold text-indigo-700 mb-2">
+              {{ exam.module_name }}
+            </h3>
+            <!-- Add other exam details as needed -->
+            {% if exam.module_id %}
+            <a
+              href="{% url 'start_exam' exam_id=exam.module_id %}"
+              class="flex items-center justify-center bg-indigo-500 text-white font-bold py-2 px-4 rounded hover:bg-indigo-600"
+            >
+              <svg
+                class="h-4 w-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+              Start Exam
+            </a>
+            {% else %}
+            <p class="text-red-500">Invalid exam ID</p>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-exams-card card-container">
+          <p class="text-blue-800 text-center">
+            No exams available for you at the moment. Check back later!
+          </p>
+        </div>
+        {% endif %}
+      </section>
+    </div>
+  </body>
+</html>

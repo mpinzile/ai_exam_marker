@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-Powered Examination System</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @media (max-width: 600px) {
+        .btn-margin {
+          margin-left: 1rem;
+          margin-right: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <div class="container mx-auto mt-10 text-center">
+      <header class="mb-8">
+        <h1 class="text-4xl font-extrabold text-indigo-700 leading-tight">
+          AI-Powered Examination Marking System
+        </h1>
+      </header>
+
+      <section class="mb-8 text-gray-700 text-lg max-w-lg mx-auto">
+        <p>
+          Welcome to the future of examinations with AI technology.
+          Revolutionizing the way we assess knowledge and skills.
+        </p>
+      </section>
+
+      <section
+        class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center"
+      >
+        <a
+          href="{% url 'student_login' %}"
+          class="btn-margin bg-blue-500 text-white font-bold py-3 px-6 rounded hover:bg-blue-600"
+          >Login as Student</a
+        >
+        <a
+          href="{% url 'teacher_login' %}"
+          class="btn-margin bg-green-500 text-white font-bold py-3 px-6 rounded hover:bg-green-600"
+          >Login as Teacher</a
+        >
+      </section>
+    </div>
+  </body>
+</html>
